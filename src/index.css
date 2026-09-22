@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #faf8f4;
+  --lavender: #efeaf6;
+  --lavender-deep: #e2d9ef;
+  --brand: #6e6394;
+  --brand-deep: #4e4470;
+  --ink: #2e2a38;
+  --ink-soft: #8a8496;
+  --line: #ece7f0;
+  --radius: 1.75rem;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: #e9e5de;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  /* 软阴影白卡 */
+  .card-soft {
+    @apply bg-white rounded-[28px];
+    box-shadow:
+      0 1px 2px rgba(78, 68, 112, 0.04),
+      0 8px 24px rgba(78, 68, 112, 0.06);
+  }
+
+  .card-tint {
+    @apply rounded-[24px];
+    background: var(--lavender);
+  }
+
+  .section-title {
+    @apply text-[17px] font-bold flex items-center gap-2;
+  }
+
+  .section-title::before {
+    content: "";
+    width: 4px;
+    height: 16px;
+    border-radius: 4px;
+    background: var(--brand);
+  }
+}
+
+/* 细滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
