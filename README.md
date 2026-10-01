@@ -71,3 +71,18 @@ export default defineConfig([
   },
 ])
 ```
+
+## GitHub Pages deployment
+
+The public demo is https://wangaloy2-alt.github.io/UI-1/ .
+
+`index.html` in the source tree is a **Vite development entry**, not a standalone website. Publishing the repository root directly leaves a blank page because `/src/main.tsx` is not compiled.
+
+- Local development: `npm ci --ignore-scripts`, then `npm run dev`.
+- Build and validate: `npm run build` then `node scripts/verify-pages.mjs`.
+- Pages source: **GitHub Actions** (Settings → Pages → Build and deployment).
+- `.github/workflows/pages.yml` validates pull requests; on `main` it builds and publishes **only `dist/`** using GitHub's Pages artifact workflow.
+- Keep Vite's relative base and the existing HashRouter, so `/UI-1/` and hash routes work without server rewrites.
+- Do not replace the source entry with generated HTML or commit dependencies, credentials or build caches.
+
+This remains a UI prototype with demonstration data, not the delivered mini-program backend.
