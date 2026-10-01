@@ -31,11 +31,17 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+      - name: Wait for legacy Pages publisher
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/wait-for-legacy-pages.mjs
       - uses: actions/deploy-pages@v4
         id: deployment

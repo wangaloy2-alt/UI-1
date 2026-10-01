@@ -80,7 +80,7 @@ The public demo is https://wangaloy2-alt.github.io/UI-1/ .
 
 - Local development: `npm ci --ignore-scripts`, then `npm run dev`.
 - Build and validate: `npm run build` then `node scripts/verify-pages.mjs`.
-- Pages source: **GitHub Actions** (Settings → Pages → Build and deployment).
+- Preferred Pages source: **GitHub Actions** (owner: Settings → Pages → Build and deployment). The existing legacy main/root setting is also supported: the deploy job waits for that same-commit legacy publisher to finish before publishing compiled dist, preventing a source-entry overwrite race.
 - `.github/workflows/pages.yml` validates pull requests; on `main` it builds and publishes **only `dist/`** using GitHub's Pages artifact workflow.
 - Keep Vite's relative base and the existing HashRouter, so `/UI-1/` and hash routes work without server rewrites.
 - Do not replace the source entry with generated HTML or commit dependencies, credentials or build caches.
